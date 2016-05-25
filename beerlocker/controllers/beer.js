@@ -4,8 +4,8 @@ exports.postBeers = function(req, res) {
     beer.name = req.body.name;
     beer.type = req.body.type;
     beer.quantity = req.body.quantity;
-    beer.userId = req.user_id;
-    
+    beer.userId = req.user._id;
+
     beer.save(function (err) {
         if (err) res.send(err);
         res.json({ message: 'Beer added to the locker!', data: beer});
@@ -27,8 +27,8 @@ exports.getBeer = function (req, res) {
 };
 
 exports.putBeer = function(req, res) {
-    Beer.update({ userId: req.user._id, _id: req.params.beer_id }, 
-                { quantity: req.body.quantity }, 
+    Beer.update({ userId: req.user._id, _id: req.params.beer_id },
+                { quantity: req.body.quantity },
                 function(err, num, raw) {
         if (err) res.send(err);
         res.json({ message: num + ' updated' });

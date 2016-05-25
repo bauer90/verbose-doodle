@@ -5,7 +5,7 @@ exports.postUsers = function(req, res) {
         username: req.body.username,
         password: req.body.password
     });
-    
+
     user.save(function(err) {
         if (err) res.send(err);
         res.json({ message: 'New beer drinker added to the locker room!'});
@@ -18,4 +18,3 @@ exports.getUsers = function(req, res) {
         res.json(users);
     });
 };
-
